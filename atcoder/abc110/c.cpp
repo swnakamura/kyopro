@@ -43,22 +43,6 @@ typedef pair<ll, ll> pll;
 const int iinf = 1 << 29;
 const long long linf = 1ll << 61;
 
-char s[200000],t[200000];
-char stot[26],ttos[26];
 int main() {
-    cin>>s>>t;
-    REP(i,sizeof(s)/sizeof(char)){
-        if(stot[s[i]-'a']==0){
-            stot[s[i]-'a']=t[i];
-        }else{
-            if(stot[s[i]-'a']!=t[i]) {cout<<"No"<<endl;return 0;}
-        }
-        if(ttos[t[i]-'a']==0){
-            ttos[t[i]-'a']=s[i];
-        }else{
-            if(ttos[t[i]-'a']!=s[i]) {cout<<"No"<<endl;return 0;}
-        }
-    }
-    cout<<"Yes"<<endl;
     return 0;
 }

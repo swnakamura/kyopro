@@ -1,5 +1,3 @@
-//!!WA
-// consider the case of n,k=2,6
 #include <bits/stdc++.h>
 #define pq priority_queue
 #define mp make_pair
@@ -45,21 +43,6 @@ typedef pair<ll, ll> pll;
 const int iinf = 1 << 29;
 const long long linf = 1ll << 61;
 
-ll gcd(ll a, ll b) {
-    if (b == 0)
-        return a;
-    return gcd(b, a % b);
-}
-
-ll n, k;
 int main() {
-    cin >> n >> k;
-    if (k & 1) {
-        cout << (n / k) * (n / k) * (n / k);
-        return 0;
-    }
-    cout << (n / (k / 2) - n / k) * (n / (k / 2) - n / k) *
-                    (n / (k / 2) - n / k) +
-                (n / k) * (n / k) * (n / k);
     return 0;
 }

@@ -43,6 +43,13 @@ typedef pair<ll, ll> pll;
 const int iinf = 1 << 29;
 const long long linf = 1ll << 61;
 
+ll n,buf,ans;
 int main() {
+    cin>>n;
+    REP(i,n){
+        cin>>buf;
+        ans+=buf-1;
+    }
+    cout<<ans;
     return 0;
 }

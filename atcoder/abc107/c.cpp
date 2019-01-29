@@ -1,5 +1,3 @@
-//!!WA
-//consider the case of 2 2 3 4
 #include <bits/stdc++.h>
 #define pq priority_queue
 #define mp make_pair
@@ -45,20 +43,6 @@ typedef pair<ll, ll> pll;
 const int iinf = 1 << 29;
 const long long linf = 1ll << 61;
 
-ll n,k;
-ll x[100000];
-ll ans=linf;
 int main() {
-    cin>>n>>k;
-    REP(i,n){
-        cin>>x[i];
-    }
-    REP(i,n-k+1){
-        ans=min({ans,abs(x[i])+x[i+k-1]-x[i],abs(x[i+k-1])+x[i+k-1]-x[i]});
-    }
-    if(n==k){
-        ans=x[n-1]-x[0]+min(abs(x[n-1]),abs(x[0]));
-    }
-    cout<<ans;
     return 0;
 }

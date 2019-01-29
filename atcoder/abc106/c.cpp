@@ -43,19 +43,6 @@ typedef pair<ll, ll> pll;
 const int iinf = 1 << 29;
 const long long linf = 1ll << 61;
 
-char s[103];
-ll k;
 int main() {
-    cin >> s;
-    cin >> k;
-    REP(i, min(k, 103ll)) {
-        if (s[i] == '0')
-            break;
-        if (s[i] != '1') {
-            cout << s[i];
-            return 0;
-        }
-    }
-    cout << 1;
     return 0;
 }
