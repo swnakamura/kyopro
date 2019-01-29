@@ -1,4 +1,3 @@
-//!! elegant
 #include <bits/stdc++.h>
 #define pq priority_queue
 #define mp make_pair
@@ -44,34 +43,22 @@ typedef pair<ll, ll> pll;
 const int iinf = 1 << 29;
 const long long linf = 1ll << 61;
 
-int n, x, mx1, mx2, x1, x2;
-int cnt1[100003], cnt2[100003];
+char s[200000],t[200000];
+char stot[26],ttos[26];
 int main() {
-    cin >> n;
-    REP(i, n) {
-        cin >> x;
-        if (i % 2 == 0) {
-            cnt1[x]++;
-            if (cnt1[x] > mx1) {
-                mx1 = cnt1[x];
-                x1 = x;
-            }
-        } else {
-            cnt2[x]++;
-            if (cnt2[x] > mx2) {
-                mx2 = cnt2[x];
-                x2 = x;
-            }
+    cin>>s>>t;
+    REP(i,sizeof(s)/sizeof(char)){
+        if(stot[s[i]-'a']==0){
+            stot[s[i]-'a']=t[i];
+        }else{
+            if(stot[s[i]-'a']!=t[i]) {cout<<"No"<<endl;return 0;}
+        }
+        if(ttos[t[i]-'a']==0){
+            ttos[t[i]-'a']=s[i];
+        }else{
+            if(ttos[t[i]-'a']!=s[i]) {cout<<"No"<<endl;return 0;}
         }
     }
-
-    sort(cnt1, cnt1 + 100003);
-    sort(cnt2, cnt2 + 100003);
-
-    if (x1 == x2)
-        cout << n - max(mx1 + cnt2[100001], mx2 + cnt1[100001]) << endl;
-    else
-        cout << n - mx1 - mx2 << endl;
-
+    cout<<"Yes"<<endl;
     return 0;
 }

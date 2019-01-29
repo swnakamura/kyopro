@@ -1,4 +1,5 @@
-//!! elegant
+//!!WA
+//consider the case of 2 2 3 4
 #include <bits/stdc++.h>
 #define pq priority_queue
 #define mp make_pair
@@ -44,34 +45,20 @@ typedef pair<ll, ll> pll;
 const int iinf = 1 << 29;
 const long long linf = 1ll << 61;
 
-int n, x, mx1, mx2, x1, x2;
-int cnt1[100003], cnt2[100003];
+ll n,k;
+ll x[100000];
+ll ans=linf;
 int main() {
-    cin >> n;
-    REP(i, n) {
-        cin >> x;
-        if (i % 2 == 0) {
-            cnt1[x]++;
-            if (cnt1[x] > mx1) {
-                mx1 = cnt1[x];
-                x1 = x;
-            }
-        } else {
-            cnt2[x]++;
-            if (cnt2[x] > mx2) {
-                mx2 = cnt2[x];
-                x2 = x;
-            }
-        }
+    cin>>n>>k;
+    REP(i,n){
+        cin>>x[i];
     }
-
-    sort(cnt1, cnt1 + 100003);
-    sort(cnt2, cnt2 + 100003);
-
-    if (x1 == x2)
-        cout << n - max(mx1 + cnt2[100001], mx2 + cnt1[100001]) << endl;
-    else
-        cout << n - mx1 - mx2 << endl;
-
+    REP(i,n-k+1){
+        ans=min({ans,abs(x[i])+x[i+k-1]-x[i],abs(x[i+k-1])+x[i+k-1]-x[i]});
+    }
+    if(n==k){
+        ans=x[n-1]-x[0]+min(abs(x[n-1]),abs(x[0]));
+    }
+    cout<<ans;
     return 0;
 }
