@@ -1,4 +1,4 @@
-CXXFLAGS= -I ~/kyopro -std=c++14 -Wall
+CXXFLAGS= -I ~/kyopro -std=c++14 -Wall -g
 SRCS=$(wildcard *.cpp)
 
 a:a.cpp
