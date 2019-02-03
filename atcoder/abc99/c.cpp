@@ -1,3 +1,4 @@
+// !!WA, and can be solved without DP
 #include <bits/stdc++.h>
 #define pq priority_queue
 #define mp make_pair
@@ -43,6 +44,37 @@ typedef pair<ll, ll> pll;
 const int iinf = 1 << 29;
 const long long linf = 1ll << 61;
 
+int n, x, ans;
+vector<int> a = {1};
+int dp[100003];
 int main() {
+    cin >> n;
+
+    x = 6;
+    while (x < 100000) {
+        a.push_back(x);
+        x *= 6;
+    }
+    x = 9;
+    while (x < 100000) {
+        a.push_back(x);
+        x *= 9;
+    }
+    sort(a.begin(), a.end(), greater<int>());
+
+    REP(i,100001){
+        dp[i]=iinf;
+    }
+
+    dp[0]=0;
+
+    REP(i,100001){
+        for(auto ite=a.begin();ite!=a.end();ite++){
+            if(i+*ite<100003){
+                dp[i+*ite]=min(dp[i+*ite],dp[i]+1);
+            }
+        }
+    }
+    cout<<dp[n];
     return 0;
 }
