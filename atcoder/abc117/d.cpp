@@ -43,35 +43,33 @@ typedef pair<ll, ll> pll;
 const int iinf = 1 << 29;
 const long long linf = 1ll << 61;
 
-int n, k, ans;
+ll n, k, ans;
 int main() {
     cin >> n >> k;
-    int a[n], maxa = 0;
+    ll a[n], maxa = 0;
     REP(i, n) {
         cin >> a[i];
         maxa = max(maxa, a[i]);
     }
-    int numofone = 0, downbit = 0;
-    int maxabuf = maxa;
+    ll numofone = 0, downbit = 0;
+    ll maxabuf = maxa;
     while (maxabuf != 0) {
-        maxabuf >> 1;
+        maxabuf >>= 1;
         downbit++;
     }
-    int kcand = 0;
-    while (downbit <= -1) {
-        REP(i, n) { (a[i] >> downbit & 1) == 1 ? numofone++ : 1; }
-        if (kcand + (1 << numofone) <= k) {
+    ll kcand = 0;
+    while (downbit != -1) {
+        REP(i, n) { ((a[i] >> downbit) & 1) == 1 ? numofone++ : 1; }
+        if (kcand + (1 << downbit) <= k) {
             if (numofone >= n - numofone) {
                 ans += (numofone << downbit);
             } else {
                 ans += (n - numofone) << downbit;
                 kcand += 1 << downbit;
             }
-            ans += (max(numofone, n - numofone) << downbit);
         } else {
             ans += numofone << downbit;
         }
-        cout << numofone << endl;
         numofone = 0;
         downbit--;
     }
