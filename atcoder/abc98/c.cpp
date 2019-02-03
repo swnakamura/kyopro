@@ -43,6 +43,30 @@ typedef pair<ll, ll> pll;
 const int iinf = 1 << 29;
 const long long linf = 1ll << 61;
 
+int n,ans,ansbuf;
+char buf;
 int main() {
+    cin>>n;
+    int s[n];
+    REP(i,n){
+        cin>>buf;
+        if(buf=='W'){
+            s[i]=0;
+        }else{
+            s[i]=1;
+            if(i!=0){
+                ansbuf++;
+            }
+        }
+    }
+    ans=ansbuf;
+    REP(i,n-1){
+        if(s[i]==0){
+            ansbuf++;
+        }
+        if(s[i+1]==1) ansbuf--;
+        ans=min(ans,ansbuf);
+    }
+    cout<<ans<<endl;
     return 0;
 }
