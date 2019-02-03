@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+// #include <bits/stdc++.h>
+#include <iostream>
 #define pq priority_queue
 #define mp make_pair
 #define cauto const auto &
@@ -43,6 +44,14 @@ typedef pair<ll, ll> pll;
 const int iinf = 1 << 29;
 const long long linf = 1ll << 61;
 
+ll n, k, x, buf;
 int main() {
+    cin >> n >> k;
+    REP(i, n) {
+        cin >> buf;
+        if (buf == 1)
+            x = buf;
+    }
+    cout<<(x+k-2)/(k-1)+(n-x-1)/(k-1)<<endl;
     return 0;
 }

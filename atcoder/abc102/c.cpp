@@ -43,6 +43,19 @@ typedef pair<ll, ll> pll;
 const int iinf = 1 << 29;
 const long long linf = 1ll << 61;
 
+ll n, ans;
 int main() {
+    cin >> n;
+    ll a[n];
+    REP(i, n) {
+        cin >> a[i];
+        a[i] -= i;
+    }
+    sort(a, a + n);
+    mid = a[n / 2];
+
+    REP(i, n) { ans += abs(a[i] - mid); }
+    cout<<ans<<endl;
+
     return 0;
 }
