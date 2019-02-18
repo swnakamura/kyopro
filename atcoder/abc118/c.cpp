@@ -1,6 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
-
 #define pq priority_queue
 #define mp make_pair
 #define cauto const auto &
@@ -26,19 +24,10 @@ template <class T> bool chmin(T &a, const T &b) {
     return 0;
 }
 
-template <class T = int> T in() {
-    T x;
-    cin >> x;
-    return (x);
-}
-
-template <class T> void print(T &x) {
-    cout << x << '\n';
-    return;
-}
-
 int dx[4] = {1, 0, -1, 0};
 int dy[4] = {0, 1, 0, -1};
+
+using namespace std;
 
 typedef long long int64;
 typedef long long lint;
@@ -46,22 +35,29 @@ typedef long long lli;
 typedef long long ll;
 typedef unsigned int uint;
 typedef unsigned long long ull;
-
-typedef pair<int, int> pint;
-typedef pair<long, long> plong;
 typedef pair<int, int> pii;
 typedef pair<ll, int> pli;
 typedef pair<int, ll> pil;
 typedef pair<ll, ll> pll;
 
+int gcd(int a,int b){
+    if(b==1) return a;
+    if(b==0) return a;
+    return gcd(b,a%b);
+}
+
 const int iinf = 1 << 29;
 const long long linf = 1ll << 61;
 
 int main() {
-    ll n,m;
-    cin>>n>>m;
-    if(n==1){cout<<m-2<<endl;return 0;}
-    if(m==1){cout<<n-2<<endl;return 0;}
-    cout<<(n-2)*(m-2)<<endl;
+    int n,a,b;
+    cin>>n;
+    cin>>a;
+    REP(i,n-1){
+        cin>>b;
+        if(b>a) swap(a,b);
+        a=gcd(a,b);
+    }
+    cout<<a<<endl;
     return 0;
 }

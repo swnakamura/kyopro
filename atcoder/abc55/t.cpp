@@ -11,35 +11,6 @@ using namespace std;
 
 #define clr(ar, val) memset(ar, val, sizeof(ar))
 
-template <class T> bool chmax(T &a, const T &b) {
-    if (a < b) {
-        a = b;
-        return 1;
-    }
-    return 0;
-}
-template <class T> bool chmin(T &a, const T &b) {
-    if (b < a) {
-        a = b;
-        return 1;
-    }
-    return 0;
-}
-
-template <class T = int> T in() {
-    T x;
-    cin >> x;
-    return (x);
-}
-
-template <class T> void print(T &x) {
-    cout << x << '\n';
-    return;
-}
-
-int dx[4] = {1, 0, -1, 0};
-int dy[4] = {0, 1, 0, -1};
-
 typedef long long int64;
 typedef long long lint;
 typedef long long lli;
@@ -57,4 +28,38 @@ typedef pair<ll, ll> pll;
 const int iinf = 1 << 29;
 const long long linf = 1ll << 61;
 
-int main() { return 0; }
+template <class T> bool chmax(T &a, const T &b) {
+    if (a < b) {
+        a = b;
+        return 1;
+    }
+    return 0;
+}
+template <class T> bool chmin(T &a, const T &b) {
+    if (b < a) {
+        a = b;
+        return 1;
+    }
+    return 0;
+}
+template <class T = int> T in() {
+    T x;
+    cin >> x;
+    return (x);
+}
+template <class T> void print(T &x) {
+    cout << x << '\n';
+    return;
+}
+
+template <class T> ll sized_subset(T &comb) {
+    T x = comb & -comb, y = x + comb;
+    return ((comb & ~y) / x) >> 1 | y;
+}
+
+int dx[4] = {1, 0, -1, 0};
+int dy[4] = {0, 1, 0, -1};
+
+int main() {
+    return 0;
+}

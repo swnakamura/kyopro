@@ -44,23 +44,9 @@ const int iinf = 1 << 29;
 const long long linf = 1ll << 61;
 
 int main() {
-    ll n;
-    cin >> n;
-    ll a[n], b[n];
-    REP(i, n) cin >> a[i] >> b[i];
-
-    REP(i,n) a[i]+=b[i];
-
-    sort(a,a+n,greater<int>());
-
-    ll ans=0;
-    REP(i,n){
-        if(i%2==0){
-            ans+=a[i];
-        }
-        else{
-            ans-=b[i];
-        }
-    }
-    cout<<ans<<endl;
+    int a,b;
+    cin>>a>>b;
+    a=b%a==0?(a+b):(b-a);
+    cout<<a<<endl;
+    return 0;
 }
