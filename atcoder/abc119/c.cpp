@@ -61,72 +61,26 @@ int dx[4] = {1, 0, -1, 0};
 int dy[4] = {0, 1, 0, -1};
 
 int n, a, b, c;
-int abuf, bbuf, cbuf;
 int l[10];
 bool used[10];
 ll ans = linf;
 ll gousei;
 
-int rec(int index) {
+int rec(int index, ll A, ll B, ll C, ll s) {
     if (index == n) {
-        if(abuf!=0&&bbuf!=0&&cbuf!=0)
-        ans = min(ans, (ll)abs(abuf - a) + abs(bbuf - b) + abs(cbuf - c) +
-                           gousei * 10);
+        if (A * B * C != 0)
+            ans = min(ans, abs(A - a) + abs(B - b) + abs(C - c) + s - 30);
     } else {
-        if (abuf != 0) {
-            gousei++;
-            abuf += l[index];
-            used[index] = 1;
-            rec(index + 1);
-            abuf -= l[index];
-            used[index] = 0;
-            gousei--;
-        } else {
-            abuf += l[index];
-            used[index] = 1;
-            rec(index + 1);
-            abuf -= l[index];
-            used[index] = 0;
-        }
-
-        if (bbuf != 0) {
-            gousei++;
-            bbuf += l[index];
-            used[index] = 1;
-            rec(index + 1);
-            bbuf -= l[index];
-            used[index] = 0;
-            gousei--;
-        } else {
-            bbuf += l[index];
-            used[index] = 1;
-            rec(index + 1);
-            bbuf -= l[index];
-            used[index] = 0;
-        }
-
-        if (cbuf != 0) {
-            gousei++;
-            cbuf += l[index];
-            used[index] = 1;
-            rec(index + 1);
-            cbuf -= l[index];
-            used[index] = 0;
-            gousei--;
-        } else {
-            cbuf += l[index];
-            used[index] = 1;
-            rec(index + 1);
-            cbuf -= l[index];
-            used[index] = 0;
-        }
-        
-        rec(index+1);
+        rec(index + 1, A + l[index], B, C, s + 10);
+        rec(index + 1, A, B + l[index], C, s + 10);
+        rec(index + 1, A, B, C + l[index], s + 10);
+        rec(index + 1, A, B, C, s);
     }
     return 0;
 }
+
 int solve() {
-    rec(0);
+    rec(0, 0, 0, 0, 0);
     cout << ans << endl;
     return 0;
 }

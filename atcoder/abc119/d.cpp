@@ -69,8 +69,8 @@ int main() {
     REP(i, q) {
         auto shrineid = lower_bound(s.begin(), s.end(), x[i]);
         auto templeid = lower_bound(t.begin(), t.end(), x[i]);
-        ll sl,sr,tl,tr;
-        if (shrineid  > s.begin()) {
+        ll sl, sr, tl, tr;
+        if (shrineid > s.begin()) {
             sl = *(shrineid - 1) - x[i];
         } else {
             sl = -linf;
@@ -80,7 +80,7 @@ int main() {
         } else {
             sr = linf;
         }
-        if (templeid  > t.begin()) {
+        if (templeid > t.begin()) {
             tl = *(templeid - 1) - x[i];
         } else {
             tl = -linf;
@@ -90,7 +90,11 @@ int main() {
         } else {
             tr = linf;
         }
-        cout<<min({sr+min(abs(tr-sr),abs(tl-sr)),abs(sl)+min(abs(tr-sl),abs(tl-sl)),abs(tl)+min(abs(sr-tl),abs(sl-tl)),abs(tr)+min(abs(sl-tr),abs(sr-tr))})<<endl;
+        cout << min({sr + min(abs(tr - sr), abs(tl - sr)),
+                     abs(sl) + min(abs(tr - sl), abs(tl - sl)),
+                     abs(tl) + min(abs(sr - tl), abs(sl - tl)),
+                     abs(tr) + min(abs(sl - tr), abs(sr - tr))})
+             << endl;
     }
     return 0;
 }
