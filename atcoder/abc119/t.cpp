@@ -61,18 +61,5 @@ int dx[4] = {1, 0, -1, 0};
 int dy[4] = {0, 1, 0, -1};
 
 int main() {
-    ll n=in();
-    map<int,int> v;
-    ll a;
-    REP(i,n){
-        cin>>a;
-        v[a]++;
-    }
-    ll ans=0;
-    for (auto&& item : v) {
-        if(item.second>item.first)ans+=item.second-item.first;
-        if(item.second<item.first)ans+=item.second;
-    }
-    print(ans);
     return 0;
 }

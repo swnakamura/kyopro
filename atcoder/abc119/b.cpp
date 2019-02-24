@@ -61,18 +61,14 @@ int dx[4] = {1, 0, -1, 0};
 int dy[4] = {0, 1, 0, -1};
 
 int main() {
-    ll n=in();
-    map<int,int> v;
-    ll a;
-    REP(i,n){
-        cin>>a;
-        v[a]++;
+    int n = in();
+    double x,ans=0;
+    string u;
+    REP(i, n) {
+        cin>>x>>u;
+        if(u=="JPY"){ans+=x;}
+        else{ans+=x*380000.0;}
     }
-    ll ans=0;
-    for (auto&& item : v) {
-        if(item.second>item.first)ans+=item.second-item.first;
-        if(item.second<item.first)ans+=item.second;
-    }
-    print(ans);
+    printf("%lf\n",ans);
     return 0;
 }

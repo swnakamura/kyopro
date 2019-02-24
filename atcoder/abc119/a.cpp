@@ -61,18 +61,11 @@ int dx[4] = {1, 0, -1, 0};
 int dy[4] = {0, 1, 0, -1};
 
 int main() {
-    ll n=in();
-    map<int,int> v;
-    ll a;
-    REP(i,n){
-        cin>>a;
-        v[a]++;
+    string s;
+    cin>>s;
+    if(s[5]=='1' || s[6]>='5' || (s[6]=='4' && s[8]=='3' && s[9]=='1')){
+        cout<<"TBD"<<endl;
     }
-    ll ans=0;
-    for (auto&& item : v) {
-        if(item.second>item.first)ans+=item.second-item.first;
-        if(item.second<item.first)ans+=item.second;
-    }
-    print(ans);
+    else cout<<"Heisei"<<endl;
     return 0;
 }

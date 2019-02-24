@@ -61,18 +61,36 @@ int dx[4] = {1, 0, -1, 0};
 int dy[4] = {0, 1, 0, -1};
 
 int main() {
-    ll n=in();
-    map<int,int> v;
-    ll a;
-    REP(i,n){
-        cin>>a;
-        v[a]++;
+    ll a = in(), b = in(), q = in();
+    vector<ll> s(a), t(b), x(q);
+    REP(i, a) { cin >> s[i]; }
+    REP(i, b) { cin >> t[i]; }
+    REP(i, q) { cin >> x[i]; }
+    REP(i, q) {
+        auto shrineid = lower_bound(s.begin(), s.end(), x[i]);
+        auto templeid = lower_bound(t.begin(), t.end(), x[i]);
+        ll sl,sr,tl,tr;
+        if (shrineid  > s.begin()) {
+            sl = *(shrineid - 1) - x[i];
+        } else {
+            sl = -linf;
+        }
+        if (shrineid < s.end()) {
+            sr = *shrineid - x[i];
+        } else {
+            sr = linf;
+        }
+        if (templeid  > t.begin()) {
+            tl = *(templeid - 1) - x[i];
+        } else {
+            tl = -linf;
+        }
+        if (templeid < t.end()) {
+            tr = *templeid - x[i];
+        } else {
+            tr = linf;
+        }
+        cout<<min({sr+min(abs(tr-sr),abs(tl-sr)),abs(sl)+min(abs(tr-sl),abs(tl-sl)),abs(tl)+min(abs(sr-tl),abs(sl-tl)),abs(tr)+min(abs(sl-tr),abs(sr-tr))})<<endl;
     }
-    ll ans=0;
-    for (auto&& item : v) {
-        if(item.second>item.first)ans+=item.second-item.first;
-        if(item.second<item.first)ans+=item.second;
-    }
-    print(ans);
     return 0;
 }
