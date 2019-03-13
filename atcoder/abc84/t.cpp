@@ -61,5 +61,18 @@ int dx[4] = {1, 0, -1, 0};
 int dy[4] = {0, 1, 0, -1};
 
 int main() {
+    int n = in();
+    ll c[n], s[n], f[n];
+    REP(i, n) {
+        c[i] = in();
+        s[i] = in();
+        f[i] = in();
+    }
+    REP(i, n) {
+        int t=0;
+        for (int j = i; j < n - 1; j++) {
+            t=max(t,s[i]);
+        }
+    }
     return 0;
 }

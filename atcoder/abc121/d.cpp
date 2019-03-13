@@ -52,19 +52,59 @@ template <class T> void print(T &x) {
     return;
 }
 
-template <class T> ll sized_subset(T &comb) {
+template <class T> ll iterate_sized_subset(T &comb) {
     T x = comb & -comb, y = x + comb;
     return ((comb & ~y) / x) >> 1 | y;
 }
 
+struct union_find {
+    int size;
+    vector<int> par;
+    union_find(int N) : size(N), par(N) { REP(i, N) par[i] = i; }
+    int root(int x) {
+        if (par[x] == x)
+            return x;
+        else {
+            par[x] = root(par[x]);
+            return par[x];
+        }
+    }
+    void unite(int x, int y) {
+        int rx = root(x);
+        int ry = root(y);
+        if (rx == ry)
+            return;
+        else {
+            par[rx] = ry;
+            return;
+        }
+    }
+    bool same(int x, int y) { return root(x) == root(y); }
+};
+
 int dx[4] = {1, 0, -1, 0};
 int dy[4] = {0, 1, 0, -1};
 
+ll f(ll x) {
+    switch (x % 4) {
+    case 0:
+        return x;
+        break;
+    case 1:
+        return 1;
+        break;
+    case 2:
+        return x + 1;
+        break;
+    case 3:
+        return 0;
+        break;
+    }
+}
+
 int main() {
-    ll x=in();
-    ll y=in();
-    int ans=0;
-    while(y>=x){y/=2;ans++;}
-    print(ans);
-    return 0;
+    // ll a = in(), b = in();
+    ll a,b;
+    cin>>a>>b;
+    printf("%lld\n", f(b) ^ f(a - 1));
 }

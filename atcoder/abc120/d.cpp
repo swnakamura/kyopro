@@ -85,5 +85,48 @@ struct union_find {
 int dx[4] = {1, 0, -1, 0};
 int dy[4] = {0, 1, 0, -1};
 
+ll solve(union_find t) {
+    map<int, int> m;
+    REP(i, t.size) {
+        if (m.find(t.root(i)) == m.end()) {
+            m[t.root(i)] = 1;
+        } else {
+            m[t.root(i)]++;
+        }
+    }
+    ll ans = 0;
+    for (auto ite = m.begin(); ite != m.end(); ite++) {
+        auto itebuf = ite;
+        for (auto ite2 = ++itebuf; ite2 != m.end(); ite2++) {
+            ans += ite->second * ite2->second;
+        }
+    }
+    return ans;
+}
+
 int main() {
+    int n, m;
+    cin >> n >> m;
+    int from[m], to[m];
+    union_find t(n);
+    REP(i, m) { cin >> from[i] >> to[i]; }
+    ll ans[m];
+    ans[0] = 0;
+    REP(i, m) {
+        int j = m - i - 1;
+        if (t.same(from[j] - 1, to[j] - 1)) {
+            ans[j] = -1;
+        } else {
+            ans[j] = solve(t);
+        }
+        t.unite(from[j] - 1, to[j] - 1);
+    }
+
+    REP(i, m - 2) {
+        int j = m - i - 1;
+        if (ans[j] == -1)
+            ans[j] = ans[j + 1];
+    }
+    REP(i, m) { cout << (ans[i] == -1 ? 0 : ans[i]) << endl; }
+    return 0;
 }

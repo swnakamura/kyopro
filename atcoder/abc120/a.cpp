@@ -42,7 +42,7 @@ template <class T> bool chmin(T &a, const T &b) {
     }
     return 0;
 }
-template <class T = ll> T in() {
+template <class T = int> T in() {
     T x;
     cin >> x;
     return (x);
@@ -61,10 +61,8 @@ int dx[4] = {1, 0, -1, 0};
 int dy[4] = {0, 1, 0, -1};
 
 int main() {
-    ll x=in();
-    ll y=in();
-    int ans=0;
-    while(y>=x){y/=2;ans++;}
-    print(ans);
+    int a,b,c;
+    cin>>a>>b>>c;
+    cout<<min(b/a,c)<<endl;
     return 0;
 }

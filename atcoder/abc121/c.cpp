@@ -42,7 +42,7 @@ template <class T> bool chmin(T &a, const T &b) {
     }
     return 0;
 }
-template <class T = ll> T in() {
+template <class T = int> T in() {
     T x;
     cin >> x;
     return (x);
@@ -52,19 +52,54 @@ template <class T> void print(T &x) {
     return;
 }
 
-template <class T> ll sized_subset(T &comb) {
+template <class T> ll iterate_sized_subset(T &comb) {
     T x = comb & -comb, y = x + comb;
     return ((comb & ~y) / x) >> 1 | y;
 }
+
+struct union_find {
+    int size;
+    vector<int> par;
+    union_find(int N) : size(N), par(N) { REP(i, N) par[i] = i; }
+    int root(int x) {
+        if (par[x] == x)
+            return x;
+        else {
+            par[x] = root(par[x]);
+            return par[x];
+        }
+    }
+    void unite(int x, int y) {
+        int rx = root(x);
+        int ry = root(y);
+        if (rx == ry)
+            return;
+        else {
+            par[rx] = ry;
+            return;
+        }
+    }
+    bool same(int x, int y) { return root(x) == root(y); }
+};
 
 int dx[4] = {1, 0, -1, 0};
 int dy[4] = {0, 1, 0, -1};
 
 int main() {
-    ll x=in();
-    ll y=in();
-    int ans=0;
-    while(y>=x){y/=2;ans++;}
-    print(ans);
-    return 0;
+    ll n = in(), m = in();
+    pll shop[n];
+    REP(i, n) { cin >> shop[i].first >> shop[i].second; }
+    sort(shop, shop + n);
+    ll bought=0,ans=0;
+    for(int i=0;bought<m;i++){
+        if(bought+shop[i].second<m){
+            ans+=shop[i].second*shop[i].first;
+            bought+=shop[i].second;
+        }else{
+            ll buy=m-bought;
+            ans+=buy*shop[i].first;
+            bought+=buy;
+        }
+    }
+    cout<<ans<<endl;
 }
